@@ -4,7 +4,7 @@ public class string_calculator {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-      System.out.println( add("5656,2125,34343,3,9,00,2"));
+      System.out.println( add("3,4,5\n4\n9,3"));
        
 	}
 	
@@ -15,10 +15,12 @@ public class string_calculator {
         // empty string
 		if(numbers =="") return 0;
 		
+		// allow new line 
+		numbers=numbers.replace('\n',',');
 		
 		if(numbers.contains(","))
 		{
-			// assuming there are only 2 numbers 
+			// unknown number of numbers 
 			String[] parts = numbers.split(",");
 			int sum=0;
 			for(int i=0;i<parts.length;i++)
