@@ -15,7 +15,7 @@ public class string_calculator  {
 
 	public static void main(String[] args) throws MyException {
 		// TODO Auto-generated method stub
-      System.out.println( add("//;\n34;8\n-9;1;-8989"));
+      System.out.println( add("//;\n34;8;1002"));
 	}
 	
 	
@@ -54,8 +54,12 @@ public class string_calculator  {
 				 int temp = Integer.parseInt(parts[i]);
 				 if(temp < 0) 
 					 al.add(Integer.valueOf(temp));
-					 
-				 sum += Integer.parseInt(parts[i]);
+				 // numbers greater than 1000 should be ignores 
+				 if(temp >1000)
+				 {
+					 continue;
+				 }
+				 sum += temp;
 			}
 			
 			try
