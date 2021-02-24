@@ -1,5 +1,5 @@
 package com.incubyte;
-import java.util.*; 
+import java.util.*;
 
 
 // exception for negative numbers
@@ -13,38 +13,54 @@ class MyException extends Exception
 
 public class string_calculator  {
 
-	public static void main(String[] args) throws MyException {
+	public static void main(String[] args) throws MyException 
+	{
 		// TODO Auto-generated method stub
-      System.out.println( add("//;\n34;8;1002"));
+      System.out.println( add("//[***]\n1***2***3"));
 	}
+
 	
-	
-	
-	
-	
-    // support different delimiters
 	public static int add(String numbers) throws MyException
 
 	{		
         // empty string
 		if(numbers =="") return 0;
 		
-		char delimiter = ','; // the default delimiter
-		if(numbers.startsWith("//"))
+		String delimiter = ""+','; // the default delimiter
+	    // support different delimiters
+		// case for string delimiters
+		
+		// getting rid of reserved characters ( in regex) replace with default delimiter
+		if(numbers.contains("*")) numbers = numbers.replace("*",delimiter);
+		if(numbers.startsWith("//["))
 		{
-			delimiter = numbers.charAt(2);
+			String s = numbers;
+			s = s.substring(s.indexOf("[") + 1);
+			s = s.substring(0, s.indexOf("]"));
+			//System.out.println("delimiter is"+s);
+			delimiter = s;
+			/// cut the initial defining part
+			//System.out.println("the ip string is "+ numbers.substring(numbers.indexOf("]") + 2));
+			numbers = numbers.substring(numbers.indexOf("]") + 2);
 			
+
+		}
+		else if(numbers.startsWith("//"))
+		{
+			delimiter = ""+numbers.charAt(2);
+			
+		//	System.out.println("delimiter is "+ delimiter);
 			// cut the initial part of numbers 
 			numbers = numbers.substring(4);
 			
 		}
 		// allow new line 
-		numbers=numbers.replace('\n',delimiter);
+		numbers=numbers.replace("\n",delimiter);
 		
-		if(numbers.contains(Character.toString(delimiter)))
+		if(numbers.contains(delimiter))
 		{
 			// unknown number of numbers 
-			String[] parts = numbers.split(Character.toString(delimiter));
+			String[] parts = numbers.split(delimiter);
 			int sum=0 ;
 			ArrayList<Integer> al = new ArrayList<>(); 
 			for(int i=0;i<parts.length;i++)
